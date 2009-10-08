@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:WindowedApplication xmlns:mx="http://www.adobe.com/2006/mxml" 
+	layout="absolute" 
+	width="480" 
+	height="320" 
+	horizontalScrollPolicy="off" 
+	verticalScrollPolicy="off" >
+	
+	<mx:Script>
+		<![CDATA[
+			
+			// Button labels
+			[Bindable]
+			private var buttonUi:String		= "Urgent and Important (n)";
+			[Bindable]
+			private var buttonUni:String	= "Urgent But Not Important (n)";
+			[Bindable]
+			private var buttonNui:String	= "Not Urgent But Important (n)";
+			[Bindable]
+			private var buttonNuni:String	= "Not Urgent Or Important (n)";
+			
+			// Status bar
+			[Bindable]
+			private var textStatusBar:String = "Copyleft 2009 by codequarters.";
+			
+			// Task lists
+			[Bindable]
+			private var taskList:Array = [
+				{description:"Emergency server reboot", urgency:true, importance:true, date:"2009-10-07 04:23AM"},
+				{description:"Clean up old log files", urgency:true, importance:true, date:"2009-10-07 04:23AM"},
+				{description:"Fill server reboot report", urgency:true, importance:false, date:"2009-10-07 04:23AM"},
+				{description:"Backup the server", urgency:false, importance:true, date:"2009-10-07 04:25AM"},
+				{description:"Defrag the server's hard drive", urgency:false, importance:true, date:"2009-10-07 04:27AM"},
+				{description:"Change desktop wallpaper", urgency:false, importance:false, date:"2009-10-07 04:27AM"},
+				{description:"Tweet funny quote found on fortune", urgency:false, importance:false, date:"2009-10-07 04:29AM"},
+				{description:"Add quotes to fortune", urgency:false, importance:false, date:"2009-10-07 04:29AM"}
+			];
+			
+		]]>
+	</mx:Script>
+	
+	<!-- Header -->
+	<mx:HBox x="0" y="0" width="480" height="40" backgroundColor="#AAAAAA" alpha="0.8">
+		<mx:Label text="nuni" id="title_label" fontWeight="bold" fontSize="24" paddingLeft="10" paddingTop="2"/>
+	</mx:HBox>
+	
+	<!-- Main panel -->
+	<mx:HBox x="0" y="40" width="480" height="60" horizontalAlign="center" verticalAlign="middle">
+		<mx:Button label="{buttonUi}" width="220" height="40" id="button_ui" fillColors="[#FF3333, #CCCCCC, #FF0000, #CCCCCC]" fillAlphas="[1.0, 1.0, 1.0, 1.0]" themeColor="#CCCCCC" fontSize="12"/>
+		<mx:Button label="{buttonNui}" width="220" height="40" id="button_nui" fillAlphas="[1.0, 1.0]" fillColors="[#FFFF00, #CCCCCC, #FFFF00, #CCCCCC]" themeColor="#CCCCCC" fontSize="12"/>
+	</mx:HBox>
+	<mx:HBox x="0" y="100" width="480" height="60" horizontalAlign="center" verticalAlign="middle">
+		<mx:Button label="{buttonUni}" width="220" height="40" id="button_uni" fillAlphas="[1.0, 1.0]" fillColors="[#FFFF00, #CCCCCC, #FFFF00, #CCCCCC]" themeColor="#CCCCCC" fontSize="12"/>
+		<mx:Button label="{buttonNuni}" width="220" height="40" id="button_nuni" fillAlphas="[1.0, 1.0]" fillColors="[#00FF00, #CCCCCC, #00FF00, #CCCCCC]" themeColor="#CCCCCC" fontSize="12"/>
+	</mx:HBox>
+	<!--<mx:HBox x="0" y="140" width="480" height="50" horizontalAlign="center" verticalAlign="middle" id="new_task">
+		<mx:Button label="New Task (+)" width="220" height="40" id="new_task_button" fillAlphas="[1.0, 1.0, 1.0, 1.0]" fillColors="[#0000FF, #AAAAAA, #0000FF, #AAAAAA]" themeColor="#CCCCCC" borderColor="#CCCCCC"/>
+	</mx:HBox>-->
+	
+	<!-- Task list panel -->
+	<mx:DataGrid x="0" y="160" height="120" width="480" dataProvider="{taskList}" id="task_data_grid" editable="false" themeColor="#0B333C">
+		<mx:columns>
+			<mx:DataGridColumn headerText="Date" dataField="date" resizable="false" width="40"/>
+			<mx:DataGridColumn headerText="Description" dataField="description" resizable="false"/>
+		</mx:columns>
+	</mx:DataGrid>
+	
+	<!-- Footer -->
+	<mx:HBox x="0" y="280" width="480" height="20" backgroundColor="#AAAAAA" alpha="0.8" backgroundAlpha="0.8">
+		<mx:Label text="{textStatusBar}" id="status_bar_text" paddingLeft="2" paddingTop="2"/>
+	</mx:HBox>
+	
+</mx:WindowedApplication>
